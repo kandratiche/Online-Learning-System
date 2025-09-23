@@ -1,0 +1,84 @@
+.coursepage-container {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: calc(100vh - 60px);
+    color: white;
+}
+
+.coursepage-information {
+    display: flex;
+    flex-direction: column;
+    width: 100em;
+    height: fit-content;
+    padding-top: 0;
+    padding-left: 20px;
+    border-radius: 15px;
+    margin-top: 3em;
+    background-color: var(--main-color);
+}
+
+.coursepage-information-bio {
+    margin-left: 2em;
+    width: 95%;
+}
+
+.coursepage-lessons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    margin-top: 2em;
+    padding-bottom: 1em;
+    cursor: pointer;
+}
+
+.coursepage-lesson {
+    display: flex;
+    width: calc(100% - 1em);
+    border-radius: 15px;
+    background-color: #444;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.coursepage-lesson-completed {
+    display: flex;
+    width: calc(100% - 1em);
+    border-radius: 15px;
+    background-color: var(--second-color);
+    color: var(--main-color);
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.coursepage-lesson-completed:hover {
+    background-color: rgb(190, 190, 190);
+    scale: 0.98
+}
+
+.coursepage-lesson-not-completed {
+    display: flex;
+    width: calc(100% - 1em);
+    border-radius: 15px;
+    background-color: #444;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.coursepage-lesson-not-completed:hover {
+    background-color: #2e2e2e;
+    scale: 0.98
+}
+
+.coursepage-lesson-chapter {
+    margin-left: 1em;
+}
+
+.coursepage-lesson-chapter-name {
+    margin-top: -10px;
+    margin-left: 1.2em;
+}

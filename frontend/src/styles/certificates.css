@@ -1,0 +1,71 @@
+.certificates {
+    border-radius: 15px;
+    width: 95%;
+    height: auto;
+    margin-top: 3em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.certificates h2 {
+    margin-left: 2em;
+    margin-top: 1em;
+    color: var(--main-color);
+}
+
+.certificates-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.certificate-card {
+    background-color: var(--main-color);
+    color: white;
+    width: 25em;
+    height: 13em;
+    border-radius: 10px;
+    margin-left: 3em;
+    margin-top: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: default;
+    transition: 0.3s all ease;
+}
+
+.certificate-card:hover {
+    /* background-color: white;
+    color: var(--main-color);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); */
+    scale: 1.05;
+}
+
+.download-btn {
+    position: absolute;
+    width: 21em;
+    height: 2.5em;
+    border-radius: 10px;
+    background-color: white;
+    color: var(--main-color);
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    margin-top: 3em;
+    margin-left: 2em;
+}
+
+.download-btn:hover {
+    background-color: var(--second-color);
+    scale: 0.95;
+}
+
+.certificates h3 {
+    margin-left: 2em;
+    margin-top: 1em;
+}
+
+.certificates p {
+    margin-left: 2.5em;
+    margin-top: 0.5em;
+}

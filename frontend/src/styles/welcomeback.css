@@ -1,0 +1,47 @@
+.welcomeback {
+    margin-top: 3em;
+    width: 95%;
+    height: 16em;
+    border-radius: 15px;
+    background-color: var(--main-color);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.welcomeback h2 {
+    margin-left: 2em;
+    margin-top: 2em;
+    color: white;
+}
+
+.welcomeback p {
+    margin-left: 3em;
+    color: white;
+}
+
+.welcomeback-explore-button {
+    margin-left: 2.5em;
+    margin-top: 1.5em;
+    width: 10em;
+    height: 3em;
+    border-radius: 10px;
+    background-color: white;
+    color: var(--main-color);
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.welcomeback-explore-button:hover {
+    background-color: var(--second-color);
+    scale: 0.95;
+}
+
+.welcomeback-image {
+    position: absolute;
+    width: auto;
+    height: 13em;
+    right: 4em;
+    top: 9em;
+}

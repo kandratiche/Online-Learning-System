@@ -1,0 +1,64 @@
+.mycourses {
+    border-radius: 15px;
+    width: 95%;
+    margin-top: 3em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-bottom: 2.5em;
+}
+
+.mycourses h3 {
+    margin-left: 2em;
+    margin-top: 1em;
+    color: var(--main-color);
+}
+
+.mycourse-card {
+    background-color: var(--main-color);
+    color: white;
+    width: 92%;
+    height: 13em;
+    border-radius: 10px;
+    margin-left: 3em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: default;
+    transition: 0.3s all ease;
+}
+
+.mycourse-card h3 {
+    color: white;
+    margin-left: 1.7em;
+    margin-top: 1.5em;
+    padding-top: 1.5em;
+    padding-bottom: -2em;
+}
+
+.mycourse-card:hover {
+    /* background-color: white;
+    color: var(--main-color);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); */
+    scale: 1.01;
+}
+
+.mycourse-progress-bar {
+    border: 1px solid var(--second-color);
+    width: 93%;
+    height: 1em;
+    border-radius: 5px;
+    margin-left: 2em;
+}
+
+.mycourse-progress {
+    background-color: white;
+    height: 1em;
+    border-radius: 5px;
+    transition: 0.3s all ease;
+}
+
+.mycourse-card p {
+    margin-left: 2em;
+    margin-top: 1em;
+}
+
+.mycourse-waiting {
+    margin-left: 3em;
+}

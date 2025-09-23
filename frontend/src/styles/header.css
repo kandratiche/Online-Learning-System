@@ -1,0 +1,50 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 4em;
+    background-color: var(--main-color);
+    margin: 0;
+    color: white;
+}
+
+.app-header-company {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 1em;
+    margin-right: 2em;
+    cursor: default;
+}
+
+.app-header-info {
+    font-size: 1.1em;
+    margin-left: 16em;
+    margin-right: -13em;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.app-header-info:hover {
+    color: var(--second-color);
+    scale: 0.95;
+}
+
+.app-header-profile {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    color: black;
+    width: 10%;
+    height: 3em;
+    right: 1em;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.app-header-profile:hover {
+    background-color: var(--second-color);
+    scale: 0.95;
+}
