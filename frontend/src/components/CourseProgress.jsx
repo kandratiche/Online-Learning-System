@@ -19,6 +19,7 @@ export default function CourseProgress() {
             const toCont = await Promise.all(
                 toContinueCourses.map(async (course) => {
                     try {
+                        
                         const res = await axios.get(
                             `http://localhost:5001/api/courses/${course.course_id}`
                         );
