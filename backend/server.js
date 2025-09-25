@@ -10,7 +10,7 @@ connectDB();
 
 const app = express();
 app.use(cors({
-  origin: ["http://localhost:3000", "https://myapp-frontend.vercel.app"], 
+  origin: ["http://localhost:3000", "https://online-learning-system-eosin.vercel.app"], 
   credentials: true
 }));
 app.use(express.json());
