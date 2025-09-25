@@ -17,7 +17,7 @@ export default function Certificates() {
                 completedCourses.map(async (course) => {
                     try {
                         const res = await axios.get(
-                            `http://localhost:5001/api/courses/${course.course_id}`
+                            `${process.env.API_URL}/api/courses/${course.course_id}`
                         );
                         return {
                             id: course.course_id,

@@ -26,7 +26,7 @@ export default function Login() {
             localStorage.setItem("user", JSON.stringify(user));
 
             alert("Logged in successfully");
-            navigate("/");
+            navigate("/home");
         } catch (err) {
             console.error(err);
             alert("Login failed");
@@ -59,7 +59,7 @@ export default function Login() {
                 <input type="submit" value="Log In" />
                 </form>
                 <p
-                    onClick={() => navigate("/sign-up")}
+                    onClick={() => navigate("/")}
                     className="login-have-account"
                 >
                     Don’t have account?

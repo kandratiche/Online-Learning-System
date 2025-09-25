@@ -8,7 +8,7 @@ import SingUp from './pages/SignUp';
 import Login from './pages/Login';
 import AllCourses from './pages/AllCourses';
 
-const API = axios.create({ baseURL: "http://localhost:5001/api" });
+const API = axios.create({ baseURL: `${process.env.API_URL}/api` });
 
 export const getCourses = () => API.get("/courses");
 export const getCourseById = (_id) => API.get(`/courses/${_id}`);
@@ -25,8 +25,8 @@ function App() {
   return (
       <Routes>
         <Route path='/log-in' element={<Login />} />
-        <Route path='/sign-up' element={<SingUp />} />
-        <Route path="/" element={<HomePage />} />
+        <Route path='/' element={<SingUp />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/course/:id" element={<Courses />} />
         <Route path='/courses' element={<AllCourses/>} />

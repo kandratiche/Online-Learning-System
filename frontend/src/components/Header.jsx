@@ -7,7 +7,7 @@ export default function Header() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     const goToHome = () => {
-        navigate("/");
+        navigate("/home");
     };
 
     const goToAllCourses = () => {

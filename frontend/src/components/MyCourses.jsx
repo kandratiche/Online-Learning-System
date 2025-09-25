@@ -17,7 +17,7 @@ export default function MyCourses() {
 
     Promise.all(
       user.courses.map(c =>
-        axios.get(`http://localhost:5001/api/courses/${c.course_id}`)
+        axios.get(`${process.env.API_URL}/api/courses/${c.course_id}`)
       )
     )
       .then(responses => {
