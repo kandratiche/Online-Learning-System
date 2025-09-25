@@ -17,7 +17,7 @@ export default function Certificates() {
                 completedCourses.map(async (course) => {
                     try {
                         const res = await axios.get(
-                            `${process.env.API_URL}/api/courses/${course.course_id}`
+                            `${process.env.REACT_APP_API_URL}/api/courses/${course.course_id}`
                         );
                         return {
                             id: course.course_id,

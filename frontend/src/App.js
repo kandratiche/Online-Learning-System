@@ -8,17 +8,17 @@ import SingUp from './pages/SignUp';
 import Login from './pages/Login';
 import AllCourses from './pages/AllCourses';
 
-const API = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}/api` });
+const API = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}` });
 
-export const getCourses = () => API.get("/courses");
-export const getCourseById = (_id) => API.get(`/courses/${_id}`);
-export const createCourse = (course) => API.post("/courses", course);
+export const getCourses = () => API.get("/api/courses");
+export const getCourseById = (_id) => API.get(`/api/courses/${_id}`);
+export const createCourse = (course) => API.post("/api/courses", course);
 
-export const registerUser = (userData) => API.post("/users/register", userData);
-export const loginUser = (userData) => API.post("/users/login", userData);
-export const getUser = (id) => API.get(`/users/${id}`);
-export const updateProgress = (data) => API.put("/users/progress", data);
-export const enrollCourse = (userId, courseId) =>  API.post("/users/enroll", { userId, courseId });
+export const registerUser = (userData) => API.post("/api/users/register", userData);
+export const loginUser = (userData) => API.post("/api/users/login", userData);
+export const getUser = (id) => API.get(`/api/users/${id}`);
+export const updateProgress = (data) => API.put("/api/users/progress", data);
+export const enrollCourse = (userId, courseId) =>  API.post("/api/users/enroll", { userId, courseId });
 
 
 function App() {
