@@ -8,7 +8,7 @@ import SingUp from './pages/SignUp';
 import Login from './pages/Login';
 import AllCourses from './pages/AllCourses';
 
-const API = axios.create({ baseURL: `${process.env.API_URL}/api` });
+const API = axios.create({ baseURL: `${process.env.API_URL}` });
 
 export const getCourses = () => API.get("/courses");
 export const getCourseById = (_id) => API.get(`/courses/${_id}`);
