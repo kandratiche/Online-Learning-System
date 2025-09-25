@@ -13,6 +13,8 @@
 
 .course-progress-cards {
     display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
     margin-top: 1em;
     margin-bottom: 2em;
 }
@@ -20,7 +22,7 @@
 .course-card {
     background-color: var(--main-color);
     color: white;
-    width: 25em;
+    width: 21em;
     height: 13em;
     border-radius: 10px;
     margin-left: 3em;
@@ -47,8 +49,7 @@
 }
 
 .course-card-button {
-    position: absolute;
-    width: 21em;
+    width: 80%;
     height: 2.5em;
     border-radius: 10px;
     background-color: white;
@@ -58,7 +59,7 @@
     border: none;
     cursor: pointer;
     transition: 0.3s all ease;
-    margin-top: 2.5em;
+    margin-top: 1em;
     margin-left: 2em;
 }
 

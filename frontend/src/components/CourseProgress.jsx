@@ -56,10 +56,10 @@ export default function CourseProgress() {
                     <div key={course.id} className="course-card">
                         <h3>{course.title}</h3>
                         <p>Progress: {course.progress}%</p>
-                        <button className="course-card-button" onClick={() => openCourse(course.id)}>Continue</button>
                         <div className="progress-bar">
                             <div className="progress" style={{width: `${course.progress}%`}}></div>
                         </div>
+                        <button className="course-card-button" onClick={() => openCourse(course.id)}>Continue</button>
                     </div>
                 ))}
             </div>

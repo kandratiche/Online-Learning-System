@@ -38,6 +38,7 @@ export default function MyCourses() {
 
     return userCourse.progress; 
   };
+  
   return (
     <div className="mycourses">
       <h2>My Courses</h2>

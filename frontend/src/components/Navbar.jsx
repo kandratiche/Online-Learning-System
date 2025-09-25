@@ -1,9 +1,7 @@
 import "../styles/navbar.css"
-import { useState } from "react"
 
-export default function NavBar({active, setActive, items}) {
+export default function NavBar({active, setActive, items, quickAccessItems}) {
 
-    const quickAccessItems = ["Find Courses", "Discussion Forum", "Settings"];
 
     console.log(items)
 
