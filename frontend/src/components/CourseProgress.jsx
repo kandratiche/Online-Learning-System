@@ -42,7 +42,7 @@ export default function CourseProgress() {
 
         fetchToContinue();
 
-    })
+    }, [user])
 
     const openCourse = (_id) => {
         navigate(`/course/${_id}`);

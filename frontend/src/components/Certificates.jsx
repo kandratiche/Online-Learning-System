@@ -34,13 +34,13 @@ export default function Certificates() {
         };
 
         fetchCertificates();
-    });
+    }, [user]);
 
     if(certificates.length === 0) {
         return(
             <div className="certificates">
                 <h2>Certificates</h2>
-                <p>You have not earned any certificates yet.<br/>To earn a certificate, You must to complete any course</p>
+                <p id="certificates-not-ready">You have not earned any certificates yet.<br/>To earn a certificate, You must to complete any course</p>
             </div>
         )
     }   

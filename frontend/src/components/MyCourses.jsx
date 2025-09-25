@@ -40,7 +40,7 @@ export default function MyCourses() {
   };
   return (
     <div className="mycourses">
-      <h3>My Courses</h3>
+      <h2>My Courses</h2>
       <div className="mycourses-list">
         {courses && courses.length > 0 ? (
           courses.map((course) => {
