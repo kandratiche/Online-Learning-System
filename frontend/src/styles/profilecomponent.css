@@ -28,6 +28,10 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.profile-info {
+    display: flex;
+}
+
 .profile-image {
     width: 10em;
     height: 10em;
@@ -48,7 +52,7 @@
 .profile-edit-button {
     margin-top: 2em;
     margin-bottom: 1em;
-    margin-left: 19.5em;
+    align-self: center;
     width: 10em;
     height: 2.5em;
     border-radius: 10px;

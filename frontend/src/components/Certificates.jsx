@@ -1,19 +1,40 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "../styles/certificates.css"
 
 export default function Certificates() {
 
-    const certificates = [
-        {
-            id: 1,
-            title: "React for Beginners",
-            date: "2023-08-15"
-        },
-        {
-            id: 2,
-            title: "Advanced Node.js",
-            date: "2023-09-10"
-        }
-    ];
+    const [user] = useState(() => JSON.parse(localStorage.getItem("user")));
+    const [certificates, setCertificates] = useState([]);
+
+    useEffect(() => {
+        const fetchCertificates = async () => {
+            if (!user?.courses) return;
+
+            const completedCourses = user.courses.filter(c => c.progress === 100);
+
+            const certs = await Promise.all(
+                completedCourses.map(async (course) => {
+                    try {
+                        const res = await axios.get(
+                            `http://localhost:5001/api/courses/${course.course_id}`
+                        );
+                        return {
+                            id: course.course_id,
+                            title: res.data.title, 
+                        };
+                    } catch (err) {
+                        console.error("Error fetching course:", err);
+                        return null;
+                    }
+                })
+            );
+
+            setCertificates(certs.filter(Boolean)); 
+        };
+
+        fetchCertificates();
+    });
 
     if(certificates.length === 0) {
         return(
@@ -32,7 +53,7 @@ export default function Certificates() {
                     {certificates.map((cert) => (
                         <div key={cert.id} className="certificate-card">
                             <h3>{cert.title}</h3>
-                            <p>Issued on: {cert.date}</p>
+                            <p>Ready to Download</p>
                             <button className="download-btn">Download</button>
                         </div>
                     ))}

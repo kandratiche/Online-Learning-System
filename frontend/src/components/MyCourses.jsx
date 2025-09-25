@@ -1,55 +1,71 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCourses } from "../App";
+import axios from "axios";
 
 import "../styles/mycourses.css";
 
 export default function MyCourses() {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    getCourses().then((res) => setCourses(res.data));
-  }, []);
+    if (!user?.courses || user.courses.length === 0) {
+      setCourses([]); 
+      return;
+    }
+
+    Promise.all(
+      user.courses.map(c =>
+        axios.get(`http://localhost:5001/api/courses/${c.course_id}`)
+      )
+    )
+      .then(responses => {
+        setCourses(responses.map(r => r.data));
+      })
+      .catch(err => console.error(err));
+  }, [user]);
+
+
 
   const openCourse = (_id) => {
     navigate(`/course/${_id}`);
   };
 
-  const calculateProgress = (lessons) => {
-    if (!lessons || lessons.length === 0) return 0;
-    const completed = lessons.filter((l) => l.completed).length;
-    return Math.round((completed / lessons.length) * 100);
-  };
+  const calculateProgress = (courseId) => {
+    const userCourse = user?.courses.find(c => c.course_id === courseId);
+    if (!userCourse || typeof userCourse.progress !== "number") return 0;
 
+    return userCourse.progress; 
+  };
   return (
-        <div className="mycourses">
-            <h3>My Courses</h3>
-            <div className="mycourses-list">
-                {courses && courses.length > 0 ? (
-                    courses.map((course) => {
-                    const progress = calculateProgress(course.lessons);
-                    return (
-                        <div
-                        key={course._id}
-                        className="mycourse-card"
-                        onClick={() => openCourse(course._id)}
-                        >
-                        <h3>{course.title}</h3>
-                        <div className="mycourse-progress-bar">
-                            <div
-                            className="mycourse-progress"
-                            style={{ width: `${progress}%` }}
-                            ></div>
-                        </div>
-                        <p>{progress}% completed</p>
-                        </div>
-                    );
-                    })
-                ) : (
-                    <p className="mycourse-waiting">No courses available</p>
-                )}
-            </div>
-        </div>
-    );
+    <div className="mycourses">
+      <h3>My Courses</h3>
+      <div className="mycourses-list">
+        {courses && courses.length > 0 ? (
+          courses.map((course) => {
+            const progress = calculateProgress(course._id);
+            return (
+              <div
+                key={course._id}
+                className="mycourse-card"
+                onClick={() => openCourse(course._id)}
+              >
+                <h3>{course.title}</h3>
+                <div className="mycourse-progress-bar">
+                  <div
+                    className="mycourse-progress"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
+                <p>{progress}% completed</p>
+              </div>
+            );
+          })
+        ) : (
+          <p className="mycourse-waiting">You haven’t enrolled in any courses yet</p>
+        )}
+      </div>
+    </div>
+  );
 }

@@ -32,5 +32,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/:id/courses", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).populate("enrolledCourses");
+    res.json(user.enrolledCourses);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
 
 export default router;
