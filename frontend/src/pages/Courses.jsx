@@ -12,7 +12,7 @@ const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await fetch(`${processAPI_URL}/api/courses/${id}`);
+        const res = await fetch(`${process.env.API_URL}/api/courses/${id}`);
         const courseData = await res.json();
 
         const userCourse = user?.courses?.find(c => c.course_id === courseData._id);
