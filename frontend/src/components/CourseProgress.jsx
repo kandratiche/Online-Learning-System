@@ -21,7 +21,7 @@ export default function CourseProgress() {
                     try {
 
                         const res = await axios.get(
-                            `${process.env.API_URL}/api/courses/${course.course_id}`
+                            `${process.env.REACT_APP_API_URL}/api/courses/${course.course_id}`
                         );
 
                         return {

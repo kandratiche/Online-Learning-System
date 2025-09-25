@@ -12,7 +12,7 @@ const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await fetch(`${process.env.API_URL}/api/courses/${id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/courses/${id}`);
         const courseData = await res.json();
 
         const userCourse = user?.courses?.find(c => c.course_id === courseData._id);
@@ -25,12 +25,12 @@ const user = JSON.parse(localStorage.getItem("user"));
         }));
 
         } else {
-          console.log("⚠️ No progress found for this course in user.courses");
+          console.log(" No progress found for this course in user.courses");
         }
 
         setCourse(courseData);
       } catch (err) {
-        console.error("❌ Error fetching course:", err);
+        console.error("Error fetching course:", err);
       }
     };
   fetchCourse();
@@ -39,7 +39,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const complete = async (lessonIndex) => {
   try {
-    const res = await axios.post(`${process.env.API_URL}/api/users/progress`, {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/progress`, {
       userId: user._id,      
       courseId: course._id,  
       lessonIndex
@@ -53,7 +53,7 @@ const complete = async (lessonIndex) => {
       return updated;
     });
   } catch (err) {
-    console.error("❌ Error completing lesson:", err.response?.data || err);
+    console.error("Error completing lesson:", err.response?.data || err);
     alert(err.response?.data?.message || "Server error");
   }
   };
