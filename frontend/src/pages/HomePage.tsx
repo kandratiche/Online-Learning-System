@@ -6,6 +6,7 @@ import MyCourses from "../components/MyCourses";
 import NavBar from "../components/Navbar";
 import WelcomeBack from "../components/WelcomeBack";
 import FindCourses from "../components/FindCourses";
+import Settings from "../components/Settings";
 
 export default function HomePage() {
     const [active, setActive] = useState("Dashboard");
@@ -32,12 +33,13 @@ export default function HomePage() {
                 {active === "Dashboard" && (
                 <>
                     <WelcomeBack user={user} setActive={setActive}/>
-                    <CourseProgress user={user} />
+                    <CourseProgress />
                 </>
                 )}
-                {active === "My Courses" && <MyCourses user={user} />}
-                {active === "Certificates" && <Certificates user={user} />}
+                {active === "My Courses" && <MyCourses />}
+                {active === "Certificates" && <Certificates />}
                 {active === "Find Courses" && <FindCourses user={user}/>}
+                {active === "Settings" && <Settings/>}
             </div>
             </div>
         </>

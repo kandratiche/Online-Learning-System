@@ -9,7 +9,6 @@
 .certificates h2 {
     margin-left: 2em;
     margin-top: 1em;
-    color: var(--main-color);
 }
 
 .certificates-list {
@@ -20,8 +19,6 @@
 }
 
 .certificate-card {
-    background-color: var(--main-color);
-    color: white;
     width: 25em;
     height: fit-content;
     border-radius: 10px;
@@ -34,7 +31,6 @@
 
 .certificate-card:hover {
     /* background-color: white;
-    color: var(--main-color);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); */
     scale: 1.05;
 }
@@ -43,10 +39,10 @@
     width: 21em;
     height: 2.5em;
     border-radius: 10px;
-    background-color: white;
-    color: var(--main-color);
+    background-color: var(--main-color);
     font-size: 1em;
     font-weight: bold;
+    color: white;
     border: none;
     cursor: pointer;
     transition: 0.3s all ease;
@@ -55,7 +51,6 @@
 }
 
 .download-btn:hover {
-    background-color: var(--second-color);
     scale: 0.95;
 }
 
@@ -71,4 +66,17 @@
 
 #certificates-not-ready {
     margin-left: 3em;
+}
+
+body.dark-theme .certificates {
+    background-color: var(--main-color);
+}
+
+body.dark-theme .certificate-card {
+    background-color: rgb(20,20,20);
+}
+
+body.dark-theme .download-btn {
+    background-color: var(--second-color);
+    color: black;
 }

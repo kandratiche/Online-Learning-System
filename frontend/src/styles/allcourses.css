@@ -12,28 +12,30 @@
     width: 90%;
     height: fit-content;
     flex-direction: column;
-    background-color: var(--main-color);
+    background-color: var(--second-color);
     border-radius: 15px;
     padding: 3em;
-    color: white;
 }
 
 h2 { 
     margin-top: 0;
-    color: var(--second-color) 
 }
 
 .allcourses-card {
     padding: 2em;
     padding-top: 0em;
     border-radius: 15px;
-    background-color: var(--second-color);
+    background-color: white;
     transition: all 0.3s ease;
-    color: var(--main-color);
 }
 
 .allcourses-card:hover {
-    background-color: rgb(190,190,190);
+    background-color: var(--main-color);
+    color: white;
+    .allcourses-card-start {
+        background-color: var(--second-color);
+        color: var(--main-color)
+    }
 }
 
 .allcourses-card-start {
@@ -42,7 +44,7 @@ h2 {
     border-radius: 10px;
     border: 0;
     background-color: var(--main-color);
-    color: var(--second-color);
+    color: white;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -51,3 +53,25 @@ h2 {
     background-color: rgb(40,40,40);
     scale: 0.99;
 }
+
+body.dark-theme .allcourses-container {
+    background-color: var(--main-color);
+}
+
+body.dark-theme .allcourses-card {
+    background-color: rgb(20,20,20);
+}
+
+body.dark-theme .allcourses-card:hover {
+    background-color: rgb(10,10,10);
+}
+
+body.dark-theme .allcourses-card-start {
+    background-color: var(--second-color);
+    color: var(--main-color)
+}
+
+body.dark-theme .allcourses-card-start:hover {
+    background-color: rgb(180,180,180);
+}
+

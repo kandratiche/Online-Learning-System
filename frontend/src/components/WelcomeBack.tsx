@@ -1,5 +1,5 @@
 import "../styles/welcomeback.css";
-import explore_image from "../images/explore-courses.svg"
+import exploreImage from "../images/explore-courses.svg"
 
 export default function WelcomeBack({ user, setActive }) {
 
@@ -9,7 +9,7 @@ export default function WelcomeBack({ user, setActive }) {
                 <h2>Welcome Back, Guest</h2>
                 <p>Let`s explore new courses</p>
                 <button onClick={() => setActive("Find Courses")} className="welcomeback-explore-button">Explore Courses</button>
-                <img src={explore_image} alt="explore" className="welcomeback-image"/>
+                <img src={exploreImage} alt="explore" className="welcomeback-image"/>
             </div>
         )
     }
@@ -19,7 +19,7 @@ export default function WelcomeBack({ user, setActive }) {
             <h2>Welcome Back, {user.name}</h2>
             <p>Let`s explore new courses</p>
             <button onClick={() => setActive("Find Courses")} className="welcomeback-explore-button">Explore Courses</button>
-            <img src={explore_image} alt="explore" className="welcomeback-image"/>
+            <img src={exploreImage} alt="explore" className="welcomeback-image"/>
         </div>
     )
 }

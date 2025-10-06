@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import Courses from './pages/Courses';
@@ -7,6 +7,7 @@ import axios from "axios";
 import SingUp from './pages/SignUp';
 import Login from './pages/Login';
 import AllCourses from './pages/AllCourses';
+import { useEffect } from 'react';
 
 const API = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}` });
 
@@ -22,6 +23,12 @@ export const enrollCourse = (userId, courseId) =>  API.post("/api/users/enroll",
 
 
 function App() {
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    document.body.classList.add(`${theme}-theme`);
+  })
+
   return (
       <Routes>
         <Route path='/log-in' element={<Login />} />

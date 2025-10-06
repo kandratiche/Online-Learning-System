@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/findcourses.css";
-import { getCourses, enrollCourse } from "../App";
+import { getCourses, enrollCourse } from "../App.tsx";
 import { useNavigate } from "react-router-dom";
 
 export default function FindCourses() {

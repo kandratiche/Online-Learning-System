@@ -4,7 +4,6 @@
     align-items: center;
     height: calc(100vh - 4em);
     width: 23em;
-    color: var(--main-color);
 }
 
 .navbar-menu {
@@ -35,7 +34,6 @@
 
 .navbar-item:hover {
     background-color: var(--second-color);
-    color: var(--main-color);
     scale: 0.95;
 }
 
@@ -49,4 +47,24 @@
     width: 90%;
     border-radius: 15px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* DARK THEME  */
+
+body.dark-theme .navbar {
+    color: white;
+}
+
+body.dark-theme .navbar-menu, body.dark-theme .navbar-quick-access {
+    background-color: var(--main-color);
+}
+
+body.dark-theme .navbar-item:hover {
+    background-color: rgb(60, 60, 60);
+    scale: 0.95;
+}
+
+body.dark-theme .navbar-item.active {
+    background-color: var(--second-color);
+    color: black;
 }

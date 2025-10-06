@@ -4,7 +4,6 @@
     padding: 0;
     margin: 0;
     height: calc(100vh - 60px);
-    color: white;
 }
 
 .coursepage-information {
@@ -48,7 +47,6 @@
     width: calc(100% - 1em);
     border-radius: 15px;
     background-color: var(--second-color);
-    color: var(--main-color);
     flex-direction: column;
     justify-content: center;
     transition: all 0.3s ease;
@@ -81,4 +79,8 @@
 .coursepage-lesson-chapter-name {
     margin-top: -10px;
     margin-left: 1.2em;
+}
+
+body.dark-theme .coursepage-lesson-completed {
+    color: black;
 }

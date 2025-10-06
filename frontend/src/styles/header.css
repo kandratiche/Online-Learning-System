@@ -4,8 +4,8 @@
     width: 100vw;
     height: 4em;
     background-color: var(--main-color);
-    margin: 0;
     color: white;
+    margin: 0;
 }
 
 .app-header-company {
@@ -25,7 +25,6 @@
 }
 
 .app-header-info:hover {
-    color: var(--second-color);
     scale: 0.95;
 }
 
@@ -34,18 +33,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
     width: 10%;
     height: 3em;
     right: 1em;
     background-color: white;
+    color: black;
     text-align: center;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s all ease;
 }
 
+
 .app-header-profile:hover {
     background-color: var(--second-color);
     scale: 0.95;
+}
+
+body.dark-theme .app-header-profile p {
+    color: black;
+}
+
+body.dark-theme .app-header {
+    background-color: var(--main-color);
 }

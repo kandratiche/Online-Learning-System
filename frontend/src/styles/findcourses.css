@@ -11,7 +11,6 @@
 .find-courses-container h2 {
     margin-top: 1em;
     margin-left: 2em;
-    color: var(--main-color)
 }
 
 .find-courses-search-bar {
@@ -20,7 +19,6 @@
     width: 20%;
     padding: 0.5em;
     margin-left: 3.5em;
-    color: black;
 }
 
 .find-courses-courses {
@@ -28,4 +26,8 @@
     width: 100%;
     height: fit-content;
     margin-top: 2em;
+}
+
+body.dark-theme .find-courses-container {
+    background-color: var(--main-color);
 }

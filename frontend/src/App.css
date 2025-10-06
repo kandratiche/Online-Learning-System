@@ -3,6 +3,17 @@
   --second-color: rgb(220, 220, 220);
 }
 
+body.light-theme {
+  background: white;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme {
+  background: black;
+  color: white;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0;
