@@ -9,11 +9,11 @@
 3. The "Discussion Forum" will be completed
 
 **Technologies used**
-    **FrontEnd**
-        Vite
-        React
-        TypeScript
-        TailwindCSS
-    **BackEnd**
-        MongoDB
-        Express.js
+**FrontEnd**
+Vite
+React
+TypeScript
+TailwindCSS
+**BackEnd**
+MongoDB
+Express.js
