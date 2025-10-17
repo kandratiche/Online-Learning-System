@@ -5,6 +5,7 @@ interface Course {
   title: string;
   progress: number;
 }
+
 interface User {
   id: string;
   username: string;
