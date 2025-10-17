@@ -37,7 +37,7 @@ export default function LogInPage() {
         }
     };
     
-    const [choose, setChoose] = useState('username');
+    const [choose, _] = useState('username');
 
     return (
         <div className="flex w-screen h-screen justify-center items-center">
