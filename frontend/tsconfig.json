@@ -1,6 +1,7 @@
 {
-  "compilerOptions": {
-    "types": ["node", "react", "react-dom"],
-    "jsx": "react-jsx"
-  }
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

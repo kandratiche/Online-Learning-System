@@ -3,18 +3,18 @@ import Course from "../models/Course.js";
 
 export const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { username, name, surname, email, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!username || !name || !surname || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const exists = await User.findOne({ email });
+    const exists = await User.findOne({ username });
     if (exists) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const user = new User({ name, email, password });
+    const user = new User({ username, name, surname, email, password });
     await user.save();
 
     res.status(201).json({ message: "User created", user });
@@ -31,8 +31,8 @@ export const getUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
 
   if (!user) return res.status(404).json({ message: "User not found" });
   if (user.password !== password) return res.status(400).json({ message: "Invalid password" });

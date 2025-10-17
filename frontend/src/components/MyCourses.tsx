@@ -1,72 +1,35 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-import "../styles/mycourses.css";
-
 export default function MyCourses() {
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
-  const [courses, setCourses] = useState([]);
+    const courses = [
+        { id: 1, name: "React for Beginners", progress: 10 },
+        { id: 2, name: "DBMS", progress: 40 },
+        { id: 3, name: "Data Science", progress: 35 },
+        { id: 4, name: "HTML & CSS", progress: 20 },
+        { id: 5, name: "Python Fundamentals", progress: 100 },
+    ];
 
-  useEffect(() => {
-    if (!user?.courses || user.courses.length === 0) {
-      setCourses([]); 
-      return;
-    }
+    return (
+        <div className="bg-zinc-200 w-315 max-[768px]:w-75 max-[768px]:ml-0 dark:bg-black rounded-xl ml-10 mt-10 p-6">
+            <p className="text-2xl font-bold">Your Courses</p>
+            <p>{courses.length} Courses found</p>
 
-    Promise.all(
-      user.courses.map(c =>
-        axios.get(`${process.env.REACT_APP_API_URL}/api/courses/${c.course_id}`)
-      )
-    )
-      .then(responses => {
-        setCourses(responses.map(r => r.data));
-      })
-      .catch(err => console.error(err));
-  }, [user]);
-
-
-
-  const openCourse = (_id) => {
-    navigate(`/course/${_id}`);
-  };
-
-  const calculateProgress = (courseId) => {
-    const userCourse = user?.courses.find(c => c.course_id === courseId);
-    if (!userCourse || typeof userCourse.progress !== "number") return 0;
-
-    return userCourse.progress; 
-  };
-  
-  return (
-    <div className="mycourses">
-      <h2>My Courses</h2>
-      <div className="mycourses-list">
-        {courses && courses.length > 0 ? (
-          courses.map((course) => {
-            const progress = calculateProgress(course._id);
-            return (
-              <div
-                key={course._id}
-                className="mycourse-card"
-                onClick={() => openCourse(course._id)}
-              >
-                <h3>{course.title}</h3>
-                <div className="mycourse-progress-bar">
-                  <div
-                    className="mycourse-progress"
-                    style={{ width: `${progress}%` }}
-                  ></div>
-                </div>
-                <p>{progress}% completed</p>
-              </div>
-            );
-          })
-        ) : (
-          <p className="mycourse-waiting">You haven’t enrolled in any courses yet</p>
-        )}
-      </div>
-    </div>
-  );
+            <div className="flex flex-col gap-5 mt-5">
+                {courses.map((course) => (
+                    <div
+                    key={course.id}
+                    className="flex flex-col max-[768px]:w-61 bg-zinc-100 dark:bg-white dark:text-black p-4 rounded-xl w-300 cursor-pointer transition-all duration-300 hover:scale-99"
+                    >
+                        <h3 className="font-semibold">{course.name}</h3>
+                        <div className="w-full bg-zinc-700 dark:bg-gray-400 h-3 rounded-full mt-2">
+                            <div
+                            className="bg-zinc-400 dark:bg-black h-3 rounded-full transition-all duration-500"
+                            style={{ width: `${course.progress}%` }}
+                            >
+                            </div>
+                        </div>
+                        <p className="text-sm mt-1">{course.progress}% completed</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }

@@ -1,47 +1,41 @@
-import { useState, useEffect } from "react";
-import Certificates from "../components/Certificates";
-import CourseProgress from "../components/CourseProgress";
+import Dashboard from "../components/Dashboard";
+import FindCourses from "../components/FindCourses";
 import Header from "../components/Header";
 import MyCourses from "../components/MyCourses";
-import NavBar from "../components/Navbar";
-import WelcomeBack from "../components/WelcomeBack";
-import FindCourses from "../components/FindCourses";
+import Navbar from "../components/Navbar";
+import { useState } from "react";
 import Settings from "../components/Settings";
+import Support from "../components/Support";
+import Certificates from "../components/Certificates";
+import Discussion from "../components/Discussion";
 
 export default function HomePage() {
-    const [active, setActive] = useState("Dashboard");
-    const [user, setUser] = useState(null);
 
-    const items = ["Dashboard", "My Courses", "Certificates"];
-    const quickAccessItems = ["Find Courses", "Discussion Forum", "Settings"];
+    const [activeItem, setActiveItem] = useState("Dashboard");
 
-    useEffect(() => {
-        const savedUser = localStorage.getItem("user");
-        if (savedUser) setUser(JSON.parse(savedUser));
-    }, []);
+    const menuItems = [
+        "Dashboard",
+        "My Courses",
+        "Find Courses",
+        "Certificates",
+        "Discussion Forum",
+        "Support",
+        "Settings",
+    ];
 
-    console.log(user)
-
-    return (
-        <>
+    return(
+        <div className="flex flex-col h-screen w-screen">
             <Header/>
-            <div className="homepage-content">
-            <div className="homepage-navbar">
-                <NavBar active={active} setActive={setActive} items={items} quickAccessItems={quickAccessItems}/>
+            <div className="flex max-[768px]:flex-col max-[768px]:items-center">
+                <Navbar menuItems={menuItems} activeItem={activeItem} setActiveItem={setActiveItem}/>
+                {activeItem === "Dashboard" && <Dashboard/>}
+                {activeItem === "My Courses" && <MyCourses/>}
+                {activeItem === "Find Courses" && <FindCourses/>}
+                {activeItem === "Certificates" && <Certificates/>}
+                {activeItem === "Discussion Forum" && <Discussion/>}
+                {activeItem === "Support" && <Support/>}
+                {activeItem === "Settings" && <Settings/>}
             </div>
-            <div className="homepage-container">
-                {active === "Dashboard" && (
-                <>
-                    <WelcomeBack user={user} setActive={setActive}/>
-                    <CourseProgress />
-                </>
-                )}
-                {active === "My Courses" && <MyCourses />}
-                {active === "Certificates" && <Certificates />}
-                {active === "Find Courses" && <FindCourses user={user}/>}
-                {active === "Settings" && <Settings/>}
-            </div>
-            </div>
-        </>
-    );
+        </div>
+    )
 }

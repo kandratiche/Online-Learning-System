@@ -1,26 +1,24 @@
-import './App.css';
-import { Routes, Route } from "react-router-dom";
-import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';
-import Courses from './pages/Courses';
-import axios from "axios";
-import SingUp from './pages/SignUp';
-import Login from './pages/Login';
-import AllCourses from './pages/AllCourses';
-import { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom'
+import './App.css'
+import axios from 'axios'
+import HomePage from './pages/HomePage'
+import ProfilePage from './pages/ProfilePage'
+import SignUpPage from './pages/SignUpPage'
+import LogInPage from './pages/LogInPage'
+import { useEffect } from 'react'
 
-const API = axios.create({ baseURL: `${process.env.REACT_APP_API_URL}` });
+const API = axios.create({ baseURL: import.meta.env.VITE_API_URL });
+
 
 export const getCourses = () => API.get("/api/courses");
-export const getCourseById = (_id) => API.get(`/api/courses/${_id}`);
-export const createCourse = (course) => API.post("/api/courses", course);
+export const getCourseById = (_id: string) => API.get(`/api/courses/${_id}`);
+export const createCourse = (course: Object) => API.post("/api/courses", course);
 
-export const registerUser = (userData) => API.post("/api/users/register", userData);
-export const loginUser = (userData) => API.post("/api/users/login", userData);
-export const getUser = (id) => API.get(`/api/users/${id}`);
-export const updateProgress = (data) => API.put("/api/users/progress", data);
-export const enrollCourse = (userId, courseId) =>  API.post("/api/users/enroll", { userId, courseId });
-
+export const registerUser = (userData: Object) => API.post("/api/users/register", userData);
+export const loginUser = (userData: Object) => API.post("/api/users/login", userData);
+export const getUser = (id: string) => API.get(`/api/users/${id}`);
+export const updateProgress = (data: any) => API.put("/api/users/progress", data);
+export const enrollCourse = (userId: string, courseId: string) =>  API.post("/api/users/enroll", { userId, courseId });
 
 function App() {
 
@@ -30,15 +28,13 @@ function App() {
   })
 
   return (
-      <Routes>
-        <Route path='/log-in' element={<Login />} />
-        <Route path='/' element={<SingUp />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/course/:id" element={<Courses />} />
-        <Route path='/courses' element={<AllCourses/>} />
-      </Routes>
-  );
+    <Routes>
+      <Route path='/home' element={<HomePage/>}/>
+      <Route path='/' element={<SignUpPage/>}/>
+      <Route path='/log-in' element={<LogInPage/>}/>
+      <Route path="/profile" element={<ProfilePage/>}/>
+    </Routes>
+  )
 }
 
-export default App;
+export default App

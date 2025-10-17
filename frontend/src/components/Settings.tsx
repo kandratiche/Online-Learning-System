@@ -1,34 +1,45 @@
 import { useState, useEffect } from "react";
-import "../styles/settings.css";
 
 export default function Settings() {
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") || "night"
+    );
 
-    const themeNow = localStorage.getItem('theme');
-    const [theme, setTheme] = useState(themeNow);
-    
     useEffect(() => {
-        document.body.className = ""; 
-        localStorage.setItem('theme', theme || 'light');
-        document.body.classList.add(`${theme}-theme`);
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
     }, [theme]);
 
     return (
-        <div className="settings-container">
-            <h2>Settings</h2>
-            <p>Theme: {theme}</p>
-            <div className="radio-group">
-                <label className="radio-option">
-                    <input type="radio" name="theme" value="light" checked={theme === 'light'} onChange={() => setTheme('light')} />
-                    <span className="custom-radio"></span>
-                    Light
+        <div className="flex flex-col w-315 max-[768px]:w-75 max-[768px]:ml-0 bg-zinc-200 dark:bg-black dark:text-white rounded-xl p-6 mt-10 ml-10">
+            <p className="text-2xl font-bold">Settings</p>
+            <p className="mt-5 font-bold">Change Theme</p>
+
+            <div className="mt-5 flex gap-5 items-center">
+                <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                        type="radio"
+                        name="theme"
+                        value="light"
+                        className="radio"
+                        checked={theme === "light"}
+                        onChange={() => setTheme("light")}
+                    />
+                    <span>Light</span>
                 </label>
 
-                <label className="radio-option">
-                    <input type="radio" name="theme" value="dark" checked={theme === 'dark'} onChange={() => setTheme('dark')} />
-                    <span className="custom-radio"></span>
-                    Dark
+                <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                        type="radio"
+                        name="theme"
+                        value="dark"
+                        className="radio"
+                        checked={theme === "night"}
+                        onChange={() => setTheme("night")}
+                    />
+                    <span>Dark</span>
                 </label>
             </div>
         </div>
-    );
-}
+        );
+    }

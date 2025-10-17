@@ -10,9 +10,13 @@ connectDB();
 
 const app = express();
 app.use(cors({
-  origin: ["http://localhost:3000", "https://online-learning-system-eosin.vercel.app"], 
+  origin: ["http://localhost:5173", "https://online-learning-system-eosin.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
+
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
