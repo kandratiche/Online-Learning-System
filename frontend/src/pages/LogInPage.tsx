@@ -64,7 +64,7 @@ export default function LogInPage() {
                                 name="password" 
                                 className="input" 
                                 placeholder="Enter the password"
-                                value={formData.password} 
+                                value={formData.password}
                                 onChange={handleChange}
                             />
                             {error && (
