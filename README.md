@@ -22,19 +22,19 @@ Built with a focus on clean design, responsiveness, and scalability.
 ## 🧰 Tech Stack
 ### ⚛️ Frontend
 
-Vite — fast build tool for modern web apps
+- Vite — fast build tool for modern web apps
 
-React — component-based UI library
+- React — component-based UI library
 
-TypeScript — static typing for reliability
+- TypeScript — static typing for reliability
 
-Tailwind CSS — utility-first CSS framework
+- Tailwind CSS — utility-first CSS framework
 
 ### 🖥️ Backend
 
-MongoDB — NoSQL database for persistence
+- MongoDB — NoSQL database for persistence
 
-Express.js — lightweight backend framework
+- Express.js — lightweight backend framework
 
 ---
 
