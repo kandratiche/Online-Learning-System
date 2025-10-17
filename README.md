@@ -1,19 +1,35 @@
-## Last changes
-- The project has been migrated from CSS Modules to Tailwind CSS.
-- A minor change to the website's color palette was made.
-- Added username field for users
+# 💻 Online Learning System
 
-## Future changes
-- An avatar will be added for each user.
-- Will be possible to change the username and profile avatar
-- The "Discussion Forum" will be completed
+A modern web platform that allows users to register, log in, and participate in topic-based discussions.  
+Built with a focus on clean design, responsiveness, and scalability.
 
-## Technologies used
-### FrontEnd
-- Vite
-- React
-- TypeScript
-- TailwindCSS
-### BackEnd
-- MongoDB
-- Express.js
+---
+
+## 🆕 Last Updates  
+- 🔄 Migrated the project from **CSS Modules** to **Tailwind CSS**  
+- 🎨 Updated the website’s **color palette** for a fresher look  
+- 👤 Added a **username field** for users  
+
+---
+
+## 🔮 Upcoming Features  
+- 🖼️ **User avatars** for profile personalization  
+- ✏️ Ability to **edit username** and **change profile avatar**  
+- 💬 Completion of the **Discussion Forum** section  
+
+---
+
+## ⚙️ Installation  
+
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/kandratiche/Online-Learning-System.git
+
+# 2️⃣ Navigate into the project directory
+cd online-learning-system
+
+# 3️⃣ Install dependencies
+npm install
+
+# 4️⃣ Start the development server
+npm run dev
