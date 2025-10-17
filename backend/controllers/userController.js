@@ -1,5 +1,16 @@
 import User from "../models/User.js";
 import Course from "../models/Course.js";
+import cloudinary from "cloudinary"
+import dotenv from "dotenv";
+dotenv.config();
+
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 
 export const registerUser = async (req, res) => {
   try {
@@ -26,10 +37,54 @@ export const registerUser = async (req, res) => {
   }
 };
 
+export const changeUser = async (req, res) => {
+    try {
+      const { username } = req.body;
+      const userId = req.params.id;
+  
+      let avatarUrl;
+  
+      if (req.file) {
+        const result = await new Promise((resolve, reject) => {
+          const stream = cloudinary.v2.uploader.upload_stream(
+            { folder: "avatars" },
+            (error, result) => {
+              if (error) return reject(error);
+              resolve(result);
+            }
+          );
+          stream.end(req.file.buffer);
+        });
+        avatarUrl = result.secure_url;
+      }
+  
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        {
+          ...(username && { username }),
+          ...(avatarUrl && { avatar: avatarUrl }),
+        },
+        { new: true }
+      );
+  
+      if (!updatedUser) return res.status(404).json({ message: "User not found" });
+  
+      res.json(updatedUser);
+    } catch (err) {
+      console.error("Error updating profile:", err);
+      res.status(500).json({ message: "Server error", error: err.message });
+    }
+}
+
 export const getUser = async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) return res.status(404).json({ message: "User not found" });
-  res.json(user);
+  try {
+    const user = await User.findById(req.params.id).populate("courses");
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json(user);
+  } catch (err) {
+    console.error("Error fetching user:", err);
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 export const loginUser = async (req, res) => {

@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema({
   surname: { type: String, required:true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  avatar: { type: String, default: "https://i.redd.it/5r7ch6zjb2jf1.jpeg"},
   created_at: { type: Date, default: Date.now },
   courses: [UserCourseSchema]
 });

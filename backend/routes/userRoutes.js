@@ -1,13 +1,18 @@
 import express from "express";
 import User from "../models/User.js";
-import {enrollCourse, registerUser, loginUser, getUser, updateProgress } from "../controllers/userController.js";
+import {enrollCourse, registerUser, loginUser, getUser, changeUser } from "../controllers/userController.js";
+import multer from "multer";
 
 const router = express.Router();
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+router.get("/:id", getUser);
+router.put("/:id", upload.single("avatar"), changeUser);
 router.post("/register", registerUser);
 router.post("/login", loginUser); 
 router.post("/enroll", enrollCourse);
-router.get("/:id", getUser);
 router.get("/:id/courses", async (req, res) => {
     try {
         const user = await User.findById(req.params.id).populate("courses");

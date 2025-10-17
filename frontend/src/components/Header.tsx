@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"
 export default function Header() {
     
     const navigate = useNavigate();
+    
     const user = JSON.parse(localStorage.getItem("user") || "null");
-
-
+    
     if(!user) {
         return (
             <header className="flex w-ful max-[768px]:p-5 h-16 bg-zinc-200 dark:bg-black items-center">
@@ -31,7 +31,7 @@ export default function Header() {
                 <li className="text-lg cursor-pointer transition-all duration-300 hover:scale-95">All Courses</li>
             </ul>
             <div className="absolute max-[768px]:right-5 right-15 p-2 px-4 rounded-xl bg-white text-black cursor-pointer transition-all duration-300 hover:scale-95"
-                onClick={() => navigate('/profile')}>
+                onClick={() => navigate(`/profile/${user._id}`)}>
                 {user.username}
             </div>
         </header>
