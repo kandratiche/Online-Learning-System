@@ -3,7 +3,7 @@ import FindCourses from "../components/FindCourses";
 import Header from "../components/Header";
 import MyCourses from "../components/MyCourses";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Settings from "../components/Settings";
 import Support from "../components/Support";
 import Certificates from "../components/Certificates";
@@ -12,6 +12,7 @@ import Discussion from "../components/Discussion";
 export default function HomePage() {
 
     const [activeItem, setActiveItem] = useState("Dashboard");
+    const [user, setUser] = useState(null);
 
     const menuItems = [
         "Dashboard",
@@ -22,6 +23,13 @@ export default function HomePage() {
         "Support",
         "Settings",
     ];
+
+    useEffect(() => {
+        const savedUser = localStorage.getItem("user");
+        if (savedUser) setUser(JSON.parse(savedUser));
+    }, []);
+    
+    console.log(user);
 
     return(
         <div className="flex flex-col h-screen w-screen">

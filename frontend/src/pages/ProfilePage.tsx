@@ -1,7 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 
+interface Course {
+  id: string;
+  title: string;
+  progress: number;
+}
+
+interface User {
+  id: string;
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
+  created_at: string;
+  courses: Course[];
+}
+
 export default function ProfilePage() {
+
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const savedUser = localStorage.getItem("user");
+        if (savedUser) setUser(JSON.parse(savedUser));
+    }, []);
+
+    const dateStr = user?.created_at;
+    const date = new Date(dateStr || "2007-02-02T14:32:20.490Z");
+        
+    const options: Intl.DateTimeFormatOptions = { 
+        year: "numeric", 
+        month: "long", 
+        day: "numeric" 
+    };
+
+    const formatted = date.toLocaleDateString("en-US", options);
+
+
+    const enrolledCourses = user?.courses?.length;
+    const completedCourses = user?.courses?.filter((c: any) => c.progress === 100).length;
 
     const [editing, setEditing] = useState(false);
     const [_, setIcon] = useState('some');
@@ -29,19 +67,15 @@ export default function ProfilePage() {
                                     </div>
                                     <div className="flex w-110 max-[768px]:flex-col max-[768px]:w-60 max-[768px]:items-start justify-between items-center">
                                         <p className="max-[768px]:ml-1">Name: </p> 
-                                        <input className="input" type="text" name="" id="" value="NAME" readOnly/>
+                                        <input className="input" type="text" name="" id="" value={user?.name} readOnly/>
                                     </div>
                                     <div className="flex w-110 max-[768px]:flex-col max-[768px]:w-60 max-[768px]:items-start justify-between items-center">
                                         <p className="max-[768px]:ml-1">Surname: </p>
-                                        <input className="input" type="text" name="" id="" value="SURNAME" readOnly/>
-                                    </div>
-                                    <div className="flex w-110 max-[768px]:flex-col max-[768px]:w-60 max-[768px]:items-start justify-between items-center">
-                                        <p className="max-[768px]:ml-1">Age: </p>
-                                        <input className="input" type="text" name="" id="" value="AGE" readOnly/>
+                                        <input className="input" type="text" name="" id="" value={user?.surname} readOnly/>
                                     </div>
                                     <div className="flex w-110 max-[768px]:flex-col max-[768px]:w-60 max-[768px]:items-start justify-between items-center">
                                         <p className="max-[768px]:ml-1">Email: </p>
-                                        <input className="input" type="text" name="" id="" value="EMAIL" readOnly/>
+                                        <input className="input" type="text" name="" id="" value={user?.email} readOnly/>
                                     </div>
                                 </div>
                             </div>
@@ -73,16 +107,15 @@ export default function ProfilePage() {
                                     </div>
                                 </div>
                                 <div className="flex flex-col ml-10 max-[768px]:mt-10 max-[768px]:ml-0 gap-5 font-bold">
-                                    <p>Username: </p>
-                                    <p>Name: </p>
-                                    <p>Surname: </p>
-                                    <p>Age: </p>
-                                    <p>Email: </p>
-                                    <p>Member since: 13.10.2025</p>
+                                    <p>Username: {user?.username}</p>
+                                    <p>Name: {user?.name}</p>
+                                    <p>Surname: {user?.surname}</p>
+                                    <p>Email: {user?.email}</p>
+                                    <p>Member since: {formatted}</p>
                                 </div>
                                 <div className="flex flex-col ml-10 max-[768px]:ml-0 max-[768px]:mt-10 gap-5 font-bold">
-                                    <p>Enrolled Courses: 5</p>
-                                    <p>Completed Courses: 1</p>
+                                    <p>Enrolled Courses: {enrolledCourses}</p>
+                                    <p>Completed Courses: {completedCourses}</p>
                                 </div>
                             </div>
                             <button className="btn w-fit self-end mt-10" onClick={() => setEditing(!editing)}>Edit</button>

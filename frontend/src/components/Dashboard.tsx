@@ -1,4 +1,29 @@
+import { useEffect, useState } from "react";
+
+interface Course {
+  id: string;
+  title: string;
+  progress: number;
+}
+interface User {
+  id: string;
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
+  created_at: string;
+  courses: Course[];
+}
+
 export default function Dashboard() {
+
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const savedUser = (localStorage.getItem("user"));
+        if(savedUser) setUser(JSON.parse(savedUser));
+    }, [])
+
     const courses = [
         { id: 1, name: "React for Beginners", progress: 10 },
         { id: 2, name: "DBMS", progress: 40 },
@@ -8,10 +33,11 @@ export default function Dashboard() {
     ];
 
     const notCompletedCourses = courses.filter((course) => course.progress < 100);
+
     return (
         <div className="flex flex-col max-[768px]:items-center max-[768px]:ml-0 ml-10 mt-10 dark:text-white">
             <div className="w-315 max-[768px]:w-75 max-[768px]:flex max-[768px]:flex-col rounded-xl p-6 bg-zinc-200 dark:bg-black">
-                <p className="text-2xl font-bold">Welcome Back, username</p>
+                <p className="text-2xl font-bold">Welcome Back, {user ? ( user?.username ) : ("Guest")}</p>
                 <p className="text-lg mt-5">Let's explore new courses!</p>
                 <button className="bg-white text-black py-2 px-3 mt-5 rounded-lg cursor-pointer transition-all duration-300 hover:scale-98 hover:bg-zinc-100">Explore Courses</button>
             </div>
