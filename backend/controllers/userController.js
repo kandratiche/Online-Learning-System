@@ -9,11 +9,13 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const exists = await User.findOne({ username });
+    const exists = await User.findOne({
+      $or: [{ username }, { email }],
+    });
+
     if (exists) {
       return res.status(400).json({ message: "User already exists" });
-    }
-
+  }
     const user = new User({ username, name, surname, email, password });
     await user.save();
 

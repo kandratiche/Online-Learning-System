@@ -5,10 +5,13 @@ import { loginUser } from "../App";
 export default function LogInPage() {
 
     const navigate = useNavigate();
-        const [formData, setFormData] = useState({
+    
+    const [formData, setFormData] = useState({
         username: "",
         password: ""
     });
+
+    const [error, setError] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,19 +20,23 @@ export default function LogInPage() {
 
     const handleSubmit = async (e?: React.FormEvent) => {
         if(e) e.preventDefault();
+
+        setError("");
+
         try {
             const res = await loginUser(formData); 
             const user = res.data.user;
 
             localStorage.setItem("user", JSON.stringify(user));
 
-            alert("Logged in successfully");
             navigate("/home");
-        } catch (err) {
-            console.error(err);
-            alert("Login failed");
+        } catch (err: any) {
+            console.error(err);            
+            const message = err?.response?.data?.message || "Something went wrong. Please try again.";
+            setError(message);
         }
     };
+    
     const [choose, setChoose] = useState('username');
 
     return (
@@ -60,12 +67,14 @@ export default function LogInPage() {
                                 value={formData.password} 
                                 onChange={handleChange}
                             />
-                            <p id="password-error" className="hidden mt-5 text-red-500">
-        
-                            </p>
+                            {error && (
+                                <p id="password-error" className="text-red-500">
+                                    {error}
+                                </p>
+                            )}
                             <input type="submit" className="btn btn-primary mt-5" value="Log In"/>
                             {/* <p className="text-sm underline  cursor-pointer text-center mt-2" onClick={() => setChoose("email")}>Log in with Email</p> */}
-                            <p className="text-sm underline cursor-pointer text-center mt-2" onClick={() => navigate('/sign-up')}>Dont have account?</p>
+                            <p className="text-sm underline cursor-pointer text-center mt-2" onClick={() => navigate('/')}>Dont have account?</p>
                         </>
                     )}
                     {/* COMING SOON */}

@@ -34,11 +34,16 @@ export default function SignUpPage() {
         try {
             console.log("userdata: ", formData)
             await registerUser(formData);
-            alert("Account created successfully!");
             navigate("/log-in");
-        } catch (err) {
+        } catch (err: any) {
             console.error(err);
-            alert("Error creating account");
+
+            const message = err?.response?.data?.message || "Something went wrong. Please try again.";
+
+            setErrors((prev) => ({
+                ...prev,
+                password: message,
+            }));
         }
     };
 
@@ -84,49 +89,49 @@ export default function SignUpPage() {
             <form className="flex flex-col gap-2 mt-5" onSubmit={checkInputs}>
                 <label htmlFor="username">Username</label>
                 <input
-                id="username"
-                type="text"
-                name="username"
-                className="input"
-                placeholder="Enter the username"
-                value={formData.username}
-                onChange={handleChange}
+                    id="username"
+                    type="text"
+                    name="username"
+                    className="input"
+                    placeholder="Enter the username"
+                    value={formData.username}
+                    onChange={handleChange}
                 />
                 {errors.username && <p className="text-red-500">{errors.username}</p>}
 
                 <label htmlFor="name">Name</label>
                 <input
-                id="name"
-                type="text"
-                name="name"
-                className="input"
-                placeholder="Enter your name"
-                value={formData.name}
-                onChange={handleChange}
+                    id="name"
+                    type="text"
+                    name="name"
+                    className="input"
+                    placeholder="Enter your name"
+                    value={formData.name}
+                    onChange={handleChange}
                 />
                 {errors.name && <p className="text-red-500">{errors.name}</p>}
 
                 <label htmlFor="surname">Surname</label>
                 <input
-                id="surname"
-                type="text"
-                name="surname"
-                className="input"
-                placeholder="Enter your surname"
-                value={formData.surname}
-                onChange={handleChange}
+                    id="surname"
+                    type="text"
+                    name="surname"
+                    className="input"
+                    placeholder="Enter your surname"
+                    value={formData.surname}
+                    onChange={handleChange}
                 />
                 {errors.surname && <p className="text-red-500">{errors.surname}</p>}
 
                 <label htmlFor="email">Email</label>
                 <input
-                id="email"
-                type="email"
-                name="email"
-                className="input"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
+                    id="email"
+                    type="email"
+                    name="email"
+                    className="input"
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
                 />
                 {errors.email && <p className="text-red-500">{errors.email}</p>}
 
@@ -152,13 +157,13 @@ export default function SignUpPage() {
                 </div>
 
                 <input
-                id="password"
-                type="password"
-                name="password"
-                className="input"
-                placeholder="Enter the password"
-                value={formData.password}
-                onChange={handleChange}
+                    id="password"
+                    type="password"
+                    name="password"
+                    className="input"
+                    placeholder="Enter the password"
+                    value={formData.password}
+                    onChange={handleChange}
                 />
                 {errors.password && <p className="text-red-500">{errors.password}</p>}
 
