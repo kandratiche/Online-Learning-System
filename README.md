@@ -7,3 +7,13 @@
 1. An avatar will be added for each user.
 2. Will be possible to change the username and profile avatar
 3. The "Discussion Forum" will be completed
+
+**Technologies used**
+    **FrontEnd**
+        Vite
+        React
+        TypeScript
+        TailwindCSS
+    **BackEnd**
+        MongoDB
+        Express.js
