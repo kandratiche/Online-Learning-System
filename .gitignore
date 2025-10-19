@@ -2,3 +2,9 @@
 *.env
 /backend/.env
 /frontend/.env
+
+**/tests/
+**/test-results/
+**/test-screenshots/
+
+**/playwright.config.ts
