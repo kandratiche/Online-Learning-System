@@ -16,9 +16,8 @@ export const registerUser = async (req, res) => {
   try {
     const { username, name, surname, email, password } = req.body;
 
-    if (!username || !name || !surname || !email || !password) {
+    if (!username || !name || !surname || !email || !password)
       return res.status(400).json({ message: "All fields are required" });
-    }
 
     const exists = await User.findOne({
       $or: [{ username }, { email }],
@@ -26,7 +25,8 @@ export const registerUser = async (req, res) => {
 
     if (exists) {
       return res.status(400).json({ message: "User already exists" });
-  }
+    }
+
     const user = new User({ username, name, surname, email, password });
     await user.save();
 
@@ -42,6 +42,10 @@ export const changeUser = async (req, res) => {
       const { username } = req.body;
       const userId = req.params.id;
   
+      if (!username || !userId) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+
       let avatarUrl;
   
       if (req.file) {
@@ -78,8 +82,14 @@ export const changeUser = async (req, res) => {
 
 export const getUser = async (req, res) => {
   try {
+    if (!req.params.id)
+      return res.status(400).json({ message: "Please specify an ID" });
+
     const user = await User.findById(req.params.id).populate("courses");
-    if (!user) return res.status(404).json({ message: "User not found" });
+    
+    if (!user) 
+      return res.status(404).json({ message: "User not found" });
+
     res.json(user);
   } catch (err) {
     console.error("Error fetching user:", err);
@@ -89,10 +99,17 @@ export const getUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { username, password } = req.body;
+
+  if (!username || !password)
+    return res.status(400).json({ message: "All fields are required" });
+
   const user = await User.findOne({ username });
 
-  if (!user) return res.status(404).json({ message: "User not found" });
-  if (user.password !== password) return res.status(400).json({ message: "Invalid password" });
+  if (!user) 
+    return res.status(404).json({ message: "User not found" });
+  
+  if (user.password !== password) 
+    return res.status(400).json({ message: "Invalid password" });
 
   res.json({ message: "Login successful", user });
 };
@@ -110,6 +127,7 @@ export const enrollCourse = async (req, res) => {
     const alreadyEnrolled = user.courses.find(
       (c) => c.course_id.toString() === courseId
     );
+    
     if (alreadyEnrolled) {
       return res.status(400).json({ message: "Already enrolled in this course" });
     }
@@ -136,6 +154,9 @@ export const enrollCourse = async (req, res) => {
 export const updateProgress = async (req, res) => {
   const { userId, courseId, lessonIndex, completed } = req.body;
 
+  if (!userId || !courseId || !lessonIndex || !completed)
+    return res.status(400).json({ message: "All fields are required" });
+
   try {
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -154,9 +175,11 @@ export const updateProgress = async (req, res) => {
     }
 
     // Recalculate progress
-    const completedCount = courseProgress.lessons.filter((l) => l.completed).length;
+    const lessonsCount = courseProgress.lessons.length;
+    const completedLessonsCount = courseProgress.lessons.filter((l) => l.completed).length;
+
     courseProgress.progress = Math.round(
-      (completedCount / courseProgress.lessons.length) * 100
+      (completedLessonsCount / lessonsCount) * 100
     );
 
     if (courseProgress.progress === 100) courseProgress.status = "completed";
